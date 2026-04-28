@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import PayrollForm from './payroll-form/payroll-form';
 
 function App() {
+  const message = "Hello from BridgeLabz";
+  
   return (
     <div className="App">
-      <h1>Hello from BridgeLabz</h1>
+      <h1>{message}</h1>
+      <PayrollForm />
     </div>
   );
 }
