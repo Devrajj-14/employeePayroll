@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './payroll-form.scss';
+import inMemoryService from '../services/inMemoryService';
 
-const PayrollForm = () => {
+const PayrollForm = ({ onEmployeeAdded }) => {
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -35,9 +36,15 @@ const PayrollForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.name && formData.gender && formData.salary) {
-      console.log('Employee Data:', formData);
-      // This will be connected to service in next UC
+      const newEmployee = inMemoryService.createEmployee(formData);
+      console.log('Employee Data:', newEmployee);
       alert('Employee data saved successfully!');
+      
+      // Notify parent component
+      if (onEmployeeAdded) {
+        onEmployeeAdded(newEmployee);
+      }
+      
       // Reset form
       setFormData({
         name: '',
