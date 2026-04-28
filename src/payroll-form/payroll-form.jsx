@@ -34,7 +34,20 @@ const PayrollForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Employee Data:', formData);
+    if (formData.name && formData.gender && formData.salary) {
+      console.log('Employee Data:', formData);
+      // This will be connected to service in next UC
+      alert('Employee data saved successfully!');
+      // Reset form
+      setFormData({
+        name: '',
+        gender: '',
+        salary: '',
+        department: []
+      });
+    } else {
+      alert('Please fill all required fields');
+    }
   };
 
   return (
