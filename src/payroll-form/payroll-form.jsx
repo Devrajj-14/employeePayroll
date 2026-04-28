@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './payroll-form.scss';
-import inMemoryService from '../services/inMemoryService';
+import employeeService from '../services/employeeService';
 
 const PayrollForm = ({ onEmployeeAdded }) => {
   const [formData, setFormData] = useState({
@@ -81,7 +81,7 @@ const PayrollForm = ({ onEmployeeAdded }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validate all fields
@@ -103,28 +103,33 @@ const PayrollForm = ({ onEmployeeAdded }) => {
       return;
     }
 
-    const newEmployee = inMemoryService.createEmployee(formData);
-    console.log('Employee Data:', newEmployee);
-    alert('Employee data saved successfully!');
-    
-    // Notify parent component
-    if (onEmployeeAdded) {
-      onEmployeeAdded(newEmployee);
+    try {
+      const response = await employeeService.createEmployee(formData);
+      console.log('Employee Data:', response.data);
+      alert('Employee data saved successfully!');
+      
+      // Notify parent component
+      if (onEmployeeAdded) {
+        onEmployeeAdded(response.data);
+      }
+      
+      // Reset form
+      setFormData({
+        name: '',
+        gender: '',
+        salary: '',
+        department: []
+      });
+      setErrors({
+        name: '',
+        gender: '',
+        salary: '',
+        department: ''
+      });
+    } catch (error) {
+      console.error('Error saving employee:', error);
+      alert('Failed to save employee data');
     }
-    
-    // Reset form
-    setFormData({
-      name: '',
-      gender: '',
-      salary: '',
-      department: []
-    });
-    setErrors({
-      name: '',
-      gender: '',
-      salary: '',
-      department: ''
-    });
   };
 
   return (
