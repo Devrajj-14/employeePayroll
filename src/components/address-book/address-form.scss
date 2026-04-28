@@ -1,0 +1,132 @@
+.address-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .address-form-container {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+
+      h2 {
+        margin: 0;
+        color: #333;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #999;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    form {
+      padding: 20px;
+
+      .form-group {
+        margin-bottom: 20px;
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 600;
+          color: #555;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 14px;
+          box-sizing: border-box;
+          font-family: inherit;
+
+          &:focus {
+            outline: none;
+            border-color: #667eea;
+          }
+
+          &.error {
+            border-color: #e74c3c;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        .error-message {
+          color: #e74c3c;
+          font-size: 12px;
+          margin-top: 5px;
+          display: block;
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+
+        button {
+          flex: 1;
+          padding: 12px;
+          border: none;
+          border-radius: 4px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .cancel-btn {
+          background: #95a5a6;
+          color: white;
+
+          &:hover {
+            background: #7f8c8d;
+          }
+        }
+
+        .save-btn {
+          background: #667eea;
+          color: white;
+
+          &:hover {
+            background: #5568d3;
+          }
+        }
+      }
+    }
+  }
+}
