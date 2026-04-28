@@ -1,15 +1,31 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import './global.css';
+import Home from './home/home';
 import PayrollForm from './payroll-form/payroll-form';
 
 function App() {
-  const message = "Hello from BridgeLabz";
-  
   return (
-    <div className="App">
-      <h1>{message}</h1>
-      <PayrollForm />
-    </div>
+    <Router>
+      <div className="app-container">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/payroll">Payroll Form</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/payroll" element={<PayrollForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
