@@ -35,6 +35,17 @@
         outline: none;
         border-color: #4CAF50;
       }
+
+      &.error-input {
+        border-color: #e74c3c;
+      }
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 5px;
+      display: block;
     }
 
     .radio-group,
