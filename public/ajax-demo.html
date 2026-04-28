@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UC17: Browser AJAX Demo - Employee Service</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .demo-section {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .demo-section h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+    }
+
+    .output {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .output .success {
+      color: #4ec9b0;
+    }
+
+    .output .error {
+      color: #f48771;
+    }
+
+    .output .info {
+      color: #9cdcfe;
+    }
+
+    .output .timestamp {
+      color: #858585;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .status-running {
+      background: #28a745;
+      color: white;
+    }
+
+    .status-error {
+      background: #dc3545;
+      color: white;
+    }
+
+    .info-box {
+      background: #e7f3ff;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .info-box strong {
+      color: #2196F3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌐 UC17: Browser AJAX Demo</h1>
+    <p class="subtitle">Employee Service using XMLHttpRequest - Callback, Promise & Async/Await</p>
+
+    <div class="info-box">
+      <strong>ℹ️ Prerequisites:</strong> Make sure JSON Server is running on <code>http://localhost:3001</code>
+      <br>Run: <code>npm run server</code>
+    </div>
+
+    <!-- Demo 1: Callback Pattern -->
+    <div class="demo-section">
+      <h2>📋 Demo 1: Callback Pattern</h2>
+      <p>Traditional callback-based AJAX requests using XMLHttpRequest</p>
+      <div class="button-group">
+        <button class="btn-primary" onclick="demo1GetEmployees()">GET Employees</button>
+        <button class="btn-success" onclick="demo1CreateEmployee()">POST Employee</button>
+        <button class="btn-danger" onclick="demo1DeleteEmployee()">DELETE Employee</button>
+      </div>
+      <div id="output1" class="output">Ready to execute callback pattern demo...</div>
+    </div>
+
+    <!-- Demo 2: Promise Pattern -->
+    <div class="demo-section">
+      <h2>🎯 Demo 2: Promise Pattern</h2>
+      <p>Promise-based AJAX with .then() and .catch() chaining</p>
+      <div class="button-group">
+        <button class="btn-primary" onclick="demo2GetEmployees()">GET Employees</button>
+        <button class="btn-success" onclick="demo2CreateEmployee()">POST Employee</button>
+        <button class="btn-danger" onclick="demo2DeleteEmployee()">DELETE Employee</button>
+        <button class="btn-primary" onclick="demo2ChainedOperations()">Chained Operations</button>
+      </div>
+      <div id="output2" class="output">Ready to execute promise pattern demo...</div>
+    </div>
+
+    <!-- Demo 3: Async/Await Pattern -->
+    <div class="demo-section">
+      <h2>⚡ Demo 3: Async/Await Pattern</h2>
+      <p>Modern async/await syntax for cleaner asynchronous code</p>
+      <div class="button-group">
+        <button class="btn-primary" onclick="demo3GetEmployees()">GET Employees</button>
+        <button class="btn-success" onclick="demo3CreateEmployee()">POST Employee</button>
+        <button class="btn-danger" onclick="demo3DeleteEmployee()">DELETE Employee</button>
+        <button class="btn-primary" onclick="demo3FullCRUD()">Full CRUD Demo</button>
+      </div>
+      <div id="output3" class="output">Ready to execute async/await pattern demo...</div>
+    </div>
+  </div>
+
+  <script src="ajax-demo.js"></script>
+</body>
+</html>
