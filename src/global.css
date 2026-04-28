@@ -29,6 +29,7 @@ nav ul {
   display: flex;
   gap: 30px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -38,11 +39,13 @@ nav a {
   padding: 8px 16px;
   border-radius: 4px;
   transition: all 0.3s;
+  display: block;
 }
 
 nav a:hover {
   background: #667eea;
   color: white;
+  transform: translateY(-2px);
 }
 
 nav a.active {

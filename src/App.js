@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import './App.css';
 import './global.css';
 import Home from './home/home';
@@ -19,13 +19,28 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink 
+                to="/" 
+                className={({ isActive }) => isActive ? 'active' : ''}
+              >
+                🏠 Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/payroll">Payroll Form</Link>
+              <NavLink 
+                to="/payroll" 
+                className={({ isActive }) => isActive ? 'active' : ''}
+              >
+                💼 Employee Payroll
+              </NavLink>
             </li>
             <li>
-              <Link to="/address-book">Address Book</Link>
+              <NavLink 
+                to="/address-book" 
+                className={({ isActive }) => isActive ? 'active' : ''}
+              >
+                📇 Address Book
+              </NavLink>
             </li>
           </ul>
         </nav>
