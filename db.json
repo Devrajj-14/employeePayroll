@@ -1,3 +1,25 @@
 {
-  "employees": []
+  "employees": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "gender": "Female",
+      "salary": "60000",
+      "department": ["Engineering", "Finance"]
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "gender": "Male",
+      "salary": "55000",
+      "department": ["Sales", "HR"]
+    },
+    {
+      "id": 3,
+      "name": "Carol White",
+      "gender": "Female",
+      "salary": "70000",
+      "department": ["Engineering"]
+    }
+  ]
 }
