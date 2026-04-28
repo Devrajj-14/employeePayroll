@@ -161,6 +161,33 @@ See `SPRING_BOOT_INTEGRATION.md` for details on connecting to a Spring Boot back
 - feature/UC14-edit-delete-contact
 - feature/UC15-routing-navigation
 
+### AJAX Demos
+- feature/UC16-nodejs-ajax-callback-promise
+- feature/UC17-browser-ajax-promise
+
+## How to Run AJAX Demos
+
+### UC16: Node.js Terminal Demo
+```bash
+# Make sure JSON Server is running
+npm run server
+
+# In another terminal, run:
+node demos/employee-service-nodejs.js
+```
+
+### UC17: Browser AJAX Demo
+```bash
+# Make sure JSON Server is running
+npm run server
+
+# Start React app
+npm start
+
+# Open browser to:
+http://localhost:3000/ajax-demo.html
+```
+
 ## Author
 
 Devraj
