@@ -4,6 +4,7 @@ import './App.css';
 import './global.css';
 import Home from './home/home';
 import PayrollForm from './payroll-form/payroll-form';
+import AddressBook from './components/address-book/AddressBook';
 
 function App() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -23,12 +24,16 @@ function App() {
             <li>
               <Link to="/payroll">Payroll Form</Link>
             </li>
+            <li>
+              <Link to="/address-book">Address Book</Link>
+            </li>
           </ul>
         </nav>
 
         <Routes>
           <Route path="/" element={<Home key={refreshKey} />} />
           <Route path="/payroll" element={<PayrollForm onEmployeeAdded={handleEmployeeAdded} />} />
+          <Route path="/address-book" element={<AddressBook />} />
         </Routes>
       </div>
     </Router>
